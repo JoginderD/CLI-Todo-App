@@ -20,9 +20,13 @@ function addTask(text){
     tasks.push({text: text, completed: false});
 }
 
-function completeTask(index){
-    tasks[index].completed = true;
+function completeTaskByNumber(input){
+    if(input < 1 || input > tasks.length){
+        console.log("Invalid task number");
+    } else {
+        tasks[input - 1].completed = true;
+    }
 }
 
-completeTask(0);
+completeTaskByNumber(0);
 displayTasks();
