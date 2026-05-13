@@ -20,6 +20,14 @@ function addTask(text){
     tasks.push({text: text, completed: false});
 }
 
+function removeTask(input){
+    if(input < 1 || input > tasks.length){
+        console.log("Invalid task number");
+    } else {
+        tasks.splice((input - 1), 1);
+    }
+}
+
 function completeTaskByNumber(input){
     if(input < 1 || input > tasks.length){
         console.log("Invalid task number");
@@ -28,5 +36,5 @@ function completeTaskByNumber(input){
     }
 }
 
-completeTaskByNumber(0);
+removeTask(1);
 displayTasks();
