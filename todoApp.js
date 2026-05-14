@@ -66,13 +66,21 @@ function showMenu() {
         } else if (answer === 3){
             rl.question("Number of Task to be Completed: ", function(input) {
                 let num = Number(input);
-                completeTaskByNumber(num);
+                if(num > tasks.length ||num < 1){
+                    console.log("Invalid task number");
+                } else {
+                    completeTaskByNumber(num);
+                }
                 showMenu();
             })
         } else if(answer === 4){
             rl.question("Number of Task to be Removed: ", function(input) {
                 let num = Number(input);
-                removeTask(num);
+                if(num > tasks.length ||num < 1){
+                    console.log("Invalid task number");
+                } else {
+                    removeTask(num);
+                }
                 showMenu();
             })
         } else {
