@@ -1,3 +1,10 @@
+const readline = require("readline");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 let tasks = [
     { text: "Task1", completed: false },
     { text: "Task2", completed: false },
@@ -36,5 +43,44 @@ function completeTaskByNumber(input){
     }
 }
 
-removeTask(1);
-displayTasks();
+function showMenu() {
+    console.log("----------")
+    console.log("1. View Tasks");
+    console.log("2. Add Task");
+    console.log("3. Complete Task");
+    console.log("4. Remove Task");
+    console.log("5. Exit");
+    rl.question("Choose an option: ", function(choice) {
+        let answer = Number(choice);
+        if(answer < 1 || answer > 5){
+            console.log("Incorrect Input");
+            showMenu();
+        } else if (answer === 1){
+            displayTasks();
+            showMenu();
+        } else if (answer === 2){
+            rl.question("Name of Task: ", function(task) {
+                addTask(task);
+                showMenu();
+            })
+        } else if (answer === 3){
+            rl.question("Number of Task to be Completed: ", function(input) {
+                let num = Number(input);
+                completeTaskByNumber(num);
+                showMenu();
+            })
+        } else if(answer === 4){
+            rl.question("Number of Task to be Removed: ", function(input) {
+                let num = Number(input);
+                removeTask(num);
+                showMenu();
+            })
+        } else {
+            rl.close();
+        }
+
+    });
+
+}
+
+showMenu();
